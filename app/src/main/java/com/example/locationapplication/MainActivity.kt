@@ -1,6 +1,7 @@
 package com.example.locationapplication
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         btn_start.setOnClickListener {
             if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 requestLocationPermission()
+            else {
+                val intent = Intent(this, LocationService::class.java)
+                startService(intent)
+            }
         }
         btn_stop.setOnClickListener {}
     }
