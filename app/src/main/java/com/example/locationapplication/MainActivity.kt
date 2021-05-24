@@ -20,11 +20,14 @@ class MainActivity : AppCompatActivity() {
             if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 requestLocationPermission()
             else {
-                val intent = Intent(this, LocationService::class.java)
-                startService(intent)
+                startStopServiceState(true)
+                tv_service_state.text = "Сервис включен"
             }
         }
-        btn_stop.setOnClickListener {}
+        btn_stop.setOnClickListener {
+            startStopServiceState(false)
+            tv_service_state.text = "Сервис выключен"
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -40,4 +43,16 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    private fun sendServiceCommand(str: String) {
+        val intent = Intent(this, LocationService::class.java)
+            intent.putExtra("command", str)
+            startService(intent)
+        }
+
+    private fun startStopServiceState(start: Boolean) {
+        if (start)
+            sendServiceCommand(start.toString())
+        else
+            sendServiceCommand(start.toString())
+    }
 }
