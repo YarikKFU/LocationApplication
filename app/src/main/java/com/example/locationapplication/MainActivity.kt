@@ -55,9 +55,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     private fun startStopServiceState(start: Boolean) {
-        if (start)
-            sendServiceCommand(start.toString())
-        else
             sendServiceCommand(start.toString())
     }
 }
