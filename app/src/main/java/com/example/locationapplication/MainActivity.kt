@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 101
+            && permissions.first() == Manifest.permission.ACCESS_FINE_LOCATION
+            && grantResults.first() == PackageManager.PERMISSION_GRANTED) {
+            startStopServiceState(true)
+        }
     }
 
     private fun sendServiceCommand(str: String) {

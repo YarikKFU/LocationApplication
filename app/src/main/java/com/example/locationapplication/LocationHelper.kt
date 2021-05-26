@@ -24,6 +24,18 @@ class LocationHelper : LocationListener {
         locationUpdater?.invoke(location)
     }
 
+    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onProviderEnabled(provider: String?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onProviderDisabled(provider: String?) {
+        TODO("Not yet implemented")
+    }
+
     fun stopLocating(){
         locationManager?.removeUpdates(this)
     }
@@ -38,22 +50,10 @@ class LocationHelper : LocationListener {
             this.locationUpdater = locationUpdater
             locationManager?.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                1L,
+                5000L,
                 0F,
                 this
             )
         }
-    }
-
-    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onProviderEnabled(provider: String?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onProviderDisabled(provider: String?) {
-        TODO("Not yet implemented")
     }
 }
